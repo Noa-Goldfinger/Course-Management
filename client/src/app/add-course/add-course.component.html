@@ -1,0 +1,45 @@
+<p>add-course works!</p>
+   <form [formGroup]="courseForm">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+        <div class="alert alert-danger" *ngIf="courseForm.controls['name'].errors?.['required']">required!!</div>
+        <div class="alert alert-danger" *ngIf="courseForm.controls['name'].errors?.['minlength']">the minimum
+            is 2
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" class="form-control" id="startDate" formControlName="startDate">
+        <div class="alert alert-danger" *ngIf="courseForm.controls['startDate'].errors?.['required']">required!!</div>
+    
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="text" class="form-control" id="image" formControlName="image">
+        <div class="alert alert-danger" *ngIf="courseForm.controls['image'].errors?.['required']">required!!</div>
+    
+    </div>
+    <div class="form-group">
+      <label for="learningMode">Learning mode:</label>
+      <br>
+      <input type="radio" [value]="1" name="learningMode" formControlName="learningMode" [checked]="courseForm.get('learningMode').value === 1" />Frontal
+      <br>
+      <input type="radio" [value]="2" name="learningMode" formControlName="learningMode" [checked]="courseForm.get('learningMode').value === 2" />Zoom
+  </div>  
+    <div class="form-group">
+        <label for="categoryId">Category:</label>
+        <select class="form-control"  formControlName="idCategory">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="courseForm.controls['idCategory'].errors?.['required']">required!!</div>
+    </div>
+     <label for="syl">The syllabus</label>
+    <ng-container *ngFor="let input of inputs; let i = index">
+        <input id="syl"  class="form-control" (change)="onInput($event, i)">
+        <div class="alert alert-danger" *ngIf="inputs.length<2">required!!</div>
+      </ng-container>
+      <button class="btn btn-primary" (click)="saveNewCourse()"[disabled]="!courseForm.valid||inputs.length<2">Save</button>
+      <button type="button" *ngIf="isEdit" class="btn btn-primary" (click)="cancel()" >Cancel</button>
+ </form>

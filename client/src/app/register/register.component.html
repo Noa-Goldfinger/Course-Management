@@ -1,0 +1,32 @@
+<p>register works!</p>
+<form (submit)="onSubmit()" [formGroup]="userForm">
+    <div>
+        <label for="name">שם:</label>
+        <input type="text" id="name" name="name" formControlName="name">
+        <div *ngIf="userForm.get('name').errors && userForm.get('name').errors['required']">שדה זה הוא שדה חובה</div>
+        <div *ngIf="userForm.get('name').errors && userForm.get('name').errors['minlength']">שם חייב להכיל לפחות 2 תווים</div>
+        <div *ngIf="userForm.get('name').errors && userForm.get('name').errors['maxlength']">שם לא יכול להכיל יותר מ-50 תווים</div>
+    </div>
+    <div>
+        <label for="address">כתובת:</label>
+        <input type="text" id="address" name="address" formControlName="address">
+        <div *ngIf="userForm.get('address').errors && userForm.get('address').errors['required']">שדה זה הוא שדה חובה</div>
+        <div *ngIf="userForm.get('address').errors && userForm.get('address').errors['minlength']">כתובת חייבת להכיל לפחות 2 תווים</div>
+        <div *ngIf="userForm.get('address').errors && userForm.get('address').errors['maxlength']">כתובת לא יכולה להכיל יותר מ-100 תווים</div>
+    </div>
+    <div>
+        <label for="email">אימייל:</label>
+        <input type="email" id="email" name="email" formControlName="email">
+        <div *ngIf="userForm.get('email').errors && userForm.get('email').errors['required']">שדה זה הוא שדה חובה</div>
+        <div *ngIf="userForm.get('email').errors && userForm.get('email').errors['email']">כתובת האימייל אינה חוקית</div>
+    </div>
+    <div>
+        <label for="password">סיסמה:</label>
+        <input type="password" id="password" name="password" formControlName="password">
+        <div *ngIf="userForm.get('password').errors && userForm.get('password').errors['required']">שדה זה הוא שדה חובה</div>
+        <div *ngIf="userForm.get('password').errors && userForm.get('password').errors['minlength']">סיסמה חייבת להכיל לפחות 6 תווים</div>
+        <div *ngIf="userForm.get('password').errors && userForm.get('password').errors['maxlength']">סיסמה לא יכולה להכיל יותר מ-20 תווים</div>
+    </div>
+    <button type="submit">הרשמה</button>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+</form>

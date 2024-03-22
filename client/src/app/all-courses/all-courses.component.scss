@@ -1,0 +1,14 @@
+.singleCourse{
+    width: 30%;
+    height: auto;
+}
+.courses{
+    display: flex;
+    flex-wrap: wrap;
+}
+li{
+    list-style: none;
+}
+.cover{
+    margin: 50px;
+}

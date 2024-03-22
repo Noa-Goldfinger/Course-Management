@@ -1,0 +1,13 @@
+<a *ngIf="course" routerLink="/singleCourse/{{course.id}}">
+    <h2>פרטי הקורס</h2>
+    <div *ngIf="course.image" class="image">
+      <img  src="{{ course.image }}" alt="תמונת הקורס">
+    </div>
+    <p><strong>שם:</strong> {{ course.name }}</p>
+    <p><strong>כמות שיעורים:</strong> {{ course.numLessons }}</p>
+    <p>
+      <strong>אופן הלמידה:</strong>
+      <img [src]="getLearningModeName(course.learningMode) | icon" alt="icon" width="50" height="50">
+      {{getLearningModeName(course.learningMode)}}
+  </p>
+    </a>

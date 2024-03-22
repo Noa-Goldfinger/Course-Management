@@ -1,0 +1,28 @@
+<div *ngIf="course" class="course">
+  <div class="flexedTitle">
+    <h2>{{ course.name }}</h2>
+    <img src={{getIcon(course?.idCategory)}} class="smallImg" alt=""/>
+  </div>
+    <div *ngIf="course?.image" class="image">
+      <img src="{{ course.image }}" alt="תמונת הקורס">
+    </div>
+    <div>
+      <p><strong>קטגוריה:</strong> {{ getCategoryName(course?.idCategory) }} </p>
+    </div>
+
+    <p *ngIf="isStartDateInWeek(course.startDate)"><strong>תאריך התחלת למידה:</strong>
+      <strong> {{ course?.startDate | dateOnly }}</strong>
+    </p>    
+    <ul class="card-text list-group">
+      The syllabus is :
+      <li *ngFor="let c of course.syllabus">
+         <img class="smallImg" src="../../assets/book-open-reader.png"> {{c}}
+      </li>
+    </ul>
+    <p><strong>כמות שיעורים:</strong> {{ course?.numLessons }}</p>
+    <p><strong>אופן הלמידה:</strong> {{ getLearningModeName(course?.learningMode) }}</p>
+    
+    <div *ngIf="isLecturersCourse()">
+      <button (click)="editCourse(course.id)">Edit</button>
+    </div>
+  </div>

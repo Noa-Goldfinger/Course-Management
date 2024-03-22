@@ -1,0 +1,17 @@
+  <form (submit)="onSubmit()">
+    <div>
+      <label for="username">שם משתמש:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required>
+    </div>
+    <div>
+      <label for="password">סיסמה:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+    </div>
+    <button type="button" (click)="isLecturer()">מרצה?</button>
+    <div *ngIf="isLecturerExist">
+      <label for="courseName">שם קורס:</label>
+      <input type="text" id="courseName" name="courseName" [(ngModel)]="courseName" required>
+    </div>
+    <button type="submit">התחברות</button>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>

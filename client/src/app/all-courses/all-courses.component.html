@@ -1,0 +1,16 @@
+<p>all-courses works!</p>
+
+  <div class="container">
+    <select name="category" id="category"(change)="select($event)">
+        <option value="">All Categories</option>
+        <option *ngFor="let n of categories">{{n.name}}</option>
+    </select>
+    <input type="text" name="courseName" placeholder="Enter Course Name" (change)="changeCourseName($event)">
+    <select name="learningWay" id="learningWay"(change)="learningWay($event)">
+        <option value="">All learning Mode</option>
+        <option *ngFor="let c of learning" >{{c}}</option>
+    </select>
+</div>
+<ul class="courses">
+<li  class="singleCourse" *ngFor="let course of coursesToShow"><div class="cover"><app-course [course]="course"></app-course></div></li>
+</ul>
